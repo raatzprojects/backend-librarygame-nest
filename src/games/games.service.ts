@@ -38,7 +38,6 @@ export class GamesService {
 
   async update(id: number, updateGameDto: UpdateGameDto) {
     const game = await this.GameRepository.preload({
-      id: +id,
       ...updateGameDto,
     });
     if (!game) {

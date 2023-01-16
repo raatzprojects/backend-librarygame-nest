@@ -1,18 +1,26 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
-import { CreateOrderDto } from './dto/create-order.dto';
-import { OrdersService } from './orders.service';
+import { response } from 'express';
+import { CreateOrdersService } from './createOrders.service';
+import { ShowOrdersService } from './showOrders.service';
 
 @Controller('orders')
 export class OrdersController {
-  constructor(private readonly ordersService: OrdersService) {}
+  constructor(private readonly showOrdersService: ShowOrdersService) {}
 
   @Post()
-  create(@Body() createOrderDto: CreateOrderDto) {
-    return this.ordersService.create(createOrderDto);
+  public async create(@Body() { user_id, games }) {
+    const createOrder = new CreateOrdersService();
+
+    const order = await createOrder.create({
+      user_id,
+      games,
+    });
+
+    return response.json(order);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.ordersService.findOne(id);
+    return this.showOrdersService.findOne(id);
   }
 }
