@@ -15,7 +15,7 @@ interface IRequest {
   games: IGames[];
 }
 export class CreateOrdersService {
-  async create({ user_id, games }: IRequest) {
+  async execute({ user_id, games }: IRequest) {
     const usersRepository = getCustomRepository(UsersRepository);
     const gamesRepository = getCustomRepository(GamesRepository);
     const ordersRepository = getCustomRepository(OrdersRepository);

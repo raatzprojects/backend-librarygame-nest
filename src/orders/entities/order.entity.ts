@@ -1,5 +1,6 @@
 import { User } from 'src/users/entities/user.entity';
 import {
+  Column,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -13,7 +14,7 @@ class Order {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, (user) => user.order)
   @JoinColumn({ name: 'user_id' })
   user: User;
 
@@ -21,6 +22,9 @@ class Order {
     cascade: true,
   })
   orders_games: OrdersGames[];
+
+  @Column()
+  user_id: string;
 }
 
 export default Order;

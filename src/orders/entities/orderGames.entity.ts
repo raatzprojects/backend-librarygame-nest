@@ -10,8 +10,8 @@ import Order from './order.entity';
 
 @Entity('orders_games')
 class OrdersGames {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @ManyToOne(() => Order, (order) => order.orders_games)
   @JoinColumn({ name: 'order_id' })

@@ -2,13 +2,13 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import Order from './entities/order.entity';
+import OrdersGames from './entities/orderGames.entity';
 
 @Injectable()
 export class ShowOrdersService {
   constructor(
-    @InjectRepository(Order)
-    private readonly OrderRepository: Repository<Order>,
+    @InjectRepository(OrdersGames)
+    private readonly OrderRepository: Repository<OrdersGames>,
   ) {}
 
   findOne(id: string) {
